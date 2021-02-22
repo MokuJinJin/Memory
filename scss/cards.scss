@@ -13,9 +13,12 @@
   height:100px;
 	width:100px;
 	margin :10px;
+  &--active {
+    cursor: not-allowed;
+  }
 }
 
-.card--front {
+.backCard {
   border-radius : 25px;
   background-image: url('card_back.png');
   background-repeat: no-repeat;
@@ -23,24 +26,24 @@
 }
 
 $card-names: (
-"Apple":0,
-"Banana":-100,
-"Apricot":-200,
-"GreenLime":-300,
-"Grenade":-400,
-"Peach":-500,
-"Lime":-600,
-"Fraise":-700,
-"PommeVerte":-800,
-"PeachOrange":-900,
-"Raisin":-1000,
-"Pasteque":-1100,
-"Prune":-1200,
-"Poire":-1300,
-"Cerise":-1400,
-"Framboise":-1500,
-"Mangue":-1600,
-"CeriseJaune":-1700);
+"apple":0,
+"banana":-100,
+"apricot":-200,
+"greenlime":-300,
+"grenade":-400,
+"peach":-500,
+"lime":-600,
+"fraise":-700,
+"pommeverte":-800,
+"peachorange":-900,
+"raisin":-1000,
+"pasteque":-1100,
+"prune":-1200,
+"poire":-1300,
+"cerise":-1400,
+"framboise":-1500,
+"mangue":-1600,
+"cerisejaune":-1700);
 
 @each $name, $position in $card-names {
 

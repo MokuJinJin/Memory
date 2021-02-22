@@ -1,5 +1,9 @@
 <?php namespace oclock\game;
 
+
+/**
+ * Classe qui crée le plateau de jeu
+ */
 class Board {
     
     /**
@@ -8,9 +12,9 @@ class Board {
     const numberRows = 4;
 
     /**
-     * printBoard
+     * Génère le plateau de jeu HTML
      *
-     * @param  Memory $game
+     * @param  Memory $game Paramètre du jeu
      * @return void
      */
     public static function printBoard($game)
@@ -22,11 +26,12 @@ class Board {
         
         echo '<table><tr>';
         foreach ($game->cards as $id => $card) {
+            
             Board::printCard($id, $card->cardName);
-            if (($id+1) % $rows == 0) {
-                echo '</tr><tr>';
-            }
+            
+            if (($id+1) % $rows == 0) {echo '</tr><tr>';}
 		}
+        
         echo '</tr></table>';
 		
     }
@@ -41,8 +46,8 @@ class Board {
     public static function printCard($id, $cardName){
         echo '
         <td class="card" id="'.$id.'">
-                <div class="card--front"></div>    
-                <div class="card--back card--'.$cardName.'"></div>
+                <div class="backCard"></div>    
+                <div class="visualCard card--'.$cardName.'" data-fruit="'.$cardName.'"></div>
         </td>
         ';
     }

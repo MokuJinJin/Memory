@@ -23,17 +23,19 @@ class Memory {
 		
 		//echo 'Game Created';
 		$numberOfPair = $difficulty / 2;
+
 		$excludedCards = array();
+		
 		for ($i=0; $i < $numberOfPair; $i++) { 
 			// on demande une carte aléatoire qui n'a pas été tiré
 			$newCard = new Card(EnumCard::getRandomCard($excludedCards));
 			// On ajoute une paire
 			$this->cards[] = $newCard;
 			$this->cards[] = $newCard;
-			// on exclue son nom
+			// on exclue son nom pour les prochain tirages
 			$excludedCards[] = $newCard->cardName;
 		}
-
+		// on mélange
 		shuffle($this->cards);
 	}
 }

@@ -5,7 +5,7 @@ use \oclock\game\Memory;
 use \oclock\game\utils\EnumDifficulty;
 use \oclock\game\Board;
 
-$game = new Memory(EnumDifficulty::Hard);
+$game = new Memory(EnumDifficulty::Easy);
 
 echo '<html>
 <head>
@@ -14,6 +14,7 @@ echo '<html>
 <script src="http://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
 <script src="https://cdn.rawgit.com/nnattawat/flip/master/dist/jquery.flip.min.js"></script>
 <script src="js/index.main.js"></script>
+<script src="js/index.event.js"></script>
 </head>
 <body>';
 
