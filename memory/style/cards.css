@@ -1,0 +1,95 @@
+.card--Apple, .card--Banana, .card--Apricot, .card--GreenLime, .card--Grenade, .card--Peach, .card--Lime, .card--Fraise, .card--PommeVerte, .card--PeachOrange, .card--Raisin, .card--Pasteque, .card--Prune, .card--Poire, .card--Cerise, .card--Framboise, .card--Mangue, .card--CeriseJaune {
+  border-radius: 25px;
+  height: 100px !important;
+  width: 100px !important;
+}
+
+.card--Apple, .card--Banana, .card--Apricot, .card--GreenLime, .card--Grenade, .card--Peach, .card--Lime, .card--Fraise, .card--PommeVerte, .card--PeachOrange, .card--Raisin, .card--Pasteque, .card--Prune, .card--Poire, .card--Cerise, .card--Framboise, .card--Mangue, .card--CeriseJaune {
+  background-image: url("https://static.oclock.io/challenges/tests-techniques/cards.png");
+}
+
+.card {
+  cursor: pointer;
+  height: 100px;
+  width: 100px;
+  margin: 10px;
+}
+
+.card--front {
+  border-radius: 25px;
+  background-image: url("card_back.png");
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.card--Apple {
+  background-position: 0px 0px;
+}
+
+.card--Banana {
+  background-position: 0px -100px;
+}
+
+.card--Apricot {
+  background-position: 0px -200px;
+}
+
+.card--GreenLime {
+  background-position: 0px -300px;
+}
+
+.card--Grenade {
+  background-position: 0px -400px;
+}
+
+.card--Peach {
+  background-position: 0px -500px;
+}
+
+.card--Lime {
+  background-position: 0px -600px;
+}
+
+.card--Fraise {
+  background-position: 0px -700px;
+}
+
+.card--PommeVerte {
+  background-position: 0px -800px;
+}
+
+.card--PeachOrange {
+  background-position: 0px -900px;
+}
+
+.card--Raisin {
+  background-position: 0px -1000px;
+}
+
+.card--Pasteque {
+  background-position: 0px -1100px;
+}
+
+.card--Prune {
+  background-position: 0px -1200px;
+}
+
+.card--Poire {
+  background-position: 0px -1300px;
+}
+
+.card--Cerise {
+  background-position: 0px -1400px;
+}
+
+.card--Framboise {
+  background-position: 0px -1500px;
+}
+
+.card--Mangue {
+  background-position: 0px -1600px;
+}
+
+.card--CeriseJaune {
+  background-position: 0px -1700px;
+}
