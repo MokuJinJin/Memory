@@ -16,9 +16,6 @@ function MemoryGame(jqObj){
     */
     this.flippedCards = new CardPair();
 
-    // TODO : Gestion du temps 
-    console.log('Time to resolve : ' + this.difficulty.TimeToResolve);
-
     /*
     * Nombre de paire trouvées
     */
@@ -45,7 +42,9 @@ function MemoryGame(jqObj){
      */
     this.startGame = function(){
         console.log('Game Started !');
-        // TODO : commence à décrémenter le temps
+        
+        var countDown = new CountDown(this.difficulty.TimeToResolve, $("#countDown"));
+        countDown.startCountDown();
     }
 
     /**
@@ -97,7 +96,7 @@ function MemoryGame(jqObj){
 
             // si les cartes visibles sont identique
             if (this.flippedCards.isCardsAreSameFruit()) {
-                console.log('match fruits : '+clickedCard.fruitName);
+                //console.log('match fruits : '+clickedCard.fruitName);
                 $.each(this.flippedCards.listOfCards, function (index, fruitCard) {
                     // on marque les cartes comme étant validé et visible
                     fruitCard.markFlipped();
@@ -107,7 +106,7 @@ function MemoryGame(jqObj){
                 this.augmentPairFound();
                 this.checkWinGame();
             } else {
-                console.log('missmatch fruits');
+                //console.log('missmatch fruits');
                 // les cartes sont différentes
                 setTimeout(
                     // Utilisation de bind() pour pouvoir passer 'this' en arguments dans la function 'handler' invoqué par setTimeout()
@@ -115,7 +114,7 @@ function MemoryGame(jqObj){
                     // temps d'attente pour que l'on puisse voir les cartes que l'on a retournés
                     1800);
             }
-            console.log(this.numberOfPairFound + '/' + this.difficulty.NumberOfMaxPair);
+            //console.log(this.numberOfPairFound + '/' + this.difficulty.NumberOfMaxPair);
         }
     }
 }

@@ -1,6 +1,6 @@
 /**
  * @description Informations sur la difficulté du jeu
- * @param {external:Jquery} jqObject
+ * @param {external:Jquery} jqObject $('#Game')
  */
 function Difficulty(jqObject) {
     /**

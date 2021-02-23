@@ -1,6 +1,6 @@
 /**
  * @description Manipulation et informations d'une carte
- * @param {external:Jquery} jqObj
+ * @param {external:Jquery} jqObj selection Jquery de la carte : $('card')
  */
 
 function FruitCard(jqObj) {

@@ -16,10 +16,13 @@ echo '<!DOCTYPE html>
 <script src="js/fruitCard.js"></script>
 <script src="js/cardPair.js"></script>
 <script src="js/difficulty.js"></script>
+<script src="js/countdown.js"></script>
 <script src="js/memoryGame.js"></script>
 <script src="js/index.main.js"></script>
 </head>
-<body>';
+<body>
+<span id="countDown"></span>
+<br>';
 
 Board::printBoard($game);
 

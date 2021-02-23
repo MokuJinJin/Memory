@@ -35,7 +35,8 @@ class EnumDifficulty {
     public static function timeToResolve($difficulty) {
         switch ($difficulty) {
             case EnumDifficulty::Easy:
-                return 120;
+                // TODO 120s
+                return 10;
                 break;
             case EnumDifficulty::Normal:
                 return 150;

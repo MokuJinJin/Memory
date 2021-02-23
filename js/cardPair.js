@@ -10,7 +10,7 @@ function CardPair() {
     
     /**
      * @description Ajoute une carte à la liste des cartes visibles (retournées)
-     * @param {FruitCard} fruitCard
+     * @param {FruitCard} fruitCard carte à ajouter
      */
     this.addCard = function (fruitCard) {
         this.listOfCards.push(fruitCard);
