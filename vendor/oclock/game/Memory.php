@@ -13,6 +13,22 @@ class Memory {
 	 */
 	public $cards;
 		
+	
+	/**
+	 * Nombre de paires de cartes
+	 *
+	 * @var int
+	 */
+	public $numberOfPair;
+	
+	/**
+	 * Temps pour résoudre le jeu avant de perdre
+	 * Exprimé en secondes
+	 *
+	 * @var int
+	 */
+	public $timeToResolve;
+	
 	/**
 	 * constructor
 	 *
@@ -21,19 +37,22 @@ class Memory {
 	 */
 	public function __construct($difficulty = EnumDifficulty::Easy){
 		
-		//echo 'Game Created';
-		$numberOfPair = $difficulty / 2;
+		$this->numberOfPair = $difficulty / 2;
+		
+		$this->timeToResolve = EnumDifficulty::timeToResolve($difficulty);
+
 		$excludedCards = array();
-		for ($i=0; $i < $numberOfPair; $i++) { 
+		
+		for ($i=0; $i < $this->numberOfPair; $i++) { 
 			// on demande une carte aléatoire qui n'a pas été tiré
 			$newCard = new Card(EnumCard::getRandomCard($excludedCards));
 			// On ajoute une paire
 			$this->cards[] = $newCard;
 			$this->cards[] = $newCard;
-			// on exclue son nom
+			// on exclue son nom pour les prochain tirages
 			$excludedCards[] = $newCard->cardName;
 		}
-
+		// on mélange
 		shuffle($this->cards);
 	}
 }

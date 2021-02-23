@@ -5,7 +5,6 @@
  */
 class Card {	
 	
-		
 	/**
 	 * card Name
 	 *
@@ -21,11 +20,5 @@ class Card {
 	 */
 	public function __construct($cardName){
 		$this->cardName = $cardName;
-		//echo 'Card created : '.$EnumCard;
-	}
-
-	public function __toString()
-	{
-		return "Card ".$this->cardName;
 	}
 }

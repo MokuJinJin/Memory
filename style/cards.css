@@ -1,10 +1,10 @@
-.card--Apple, .card--Banana, .card--Apricot, .card--GreenLime, .card--Grenade, .card--Peach, .card--Lime, .card--Fraise, .card--PommeVerte, .card--PeachOrange, .card--Raisin, .card--Pasteque, .card--Prune, .card--Poire, .card--Cerise, .card--Framboise, .card--Mangue, .card--CeriseJaune {
+.card--apple, .card--banana, .card--apricot, .card--greenlime, .card--grenade, .card--peach, .card--lime, .card--fraise, .card--pommeverte, .card--peachorange, .card--raisin, .card--pasteque, .card--prune, .card--poire, .card--cerise, .card--framboise, .card--mangue, .card--cerisejaune {
   border-radius: 25px;
   height: 100px !important;
   width: 100px !important;
 }
 
-.card--Apple, .card--Banana, .card--Apricot, .card--GreenLime, .card--Grenade, .card--Peach, .card--Lime, .card--Fraise, .card--PommeVerte, .card--PeachOrange, .card--Raisin, .card--Pasteque, .card--Prune, .card--Poire, .card--Cerise, .card--Framboise, .card--Mangue, .card--CeriseJaune {
+.card--apple, .card--banana, .card--apricot, .card--greenlime, .card--grenade, .card--peach, .card--lime, .card--fraise, .card--pommeverte, .card--peachorange, .card--raisin, .card--pasteque, .card--prune, .card--poire, .card--cerise, .card--framboise, .card--mangue, .card--cerisejaune {
   background-image: url("https://static.oclock.io/challenges/tests-techniques/cards.png");
 }
 
@@ -15,81 +15,85 @@
   margin: 10px;
 }
 
-.card--front {
+.card--active {
+  cursor: not-allowed;
+}
+
+.backCard {
   border-radius: 25px;
   background-image: url("card_back.png");
   background-repeat: no-repeat;
   background-position: center;
 }
 
-.card--Apple {
+.card--apple {
   background-position: 0px 0px;
 }
 
-.card--Banana {
+.card--banana {
   background-position: 0px -100px;
 }
 
-.card--Apricot {
+.card--apricot {
   background-position: 0px -200px;
 }
 
-.card--GreenLime {
+.card--greenlime {
   background-position: 0px -300px;
 }
 
-.card--Grenade {
+.card--grenade {
   background-position: 0px -400px;
 }
 
-.card--Peach {
+.card--peach {
   background-position: 0px -500px;
 }
 
-.card--Lime {
+.card--lime {
   background-position: 0px -600px;
 }
 
-.card--Fraise {
+.card--fraise {
   background-position: 0px -700px;
 }
 
-.card--PommeVerte {
+.card--pommeverte {
   background-position: 0px -800px;
 }
 
-.card--PeachOrange {
+.card--peachorange {
   background-position: 0px -900px;
 }
 
-.card--Raisin {
+.card--raisin {
   background-position: 0px -1000px;
 }
 
-.card--Pasteque {
+.card--pasteque {
   background-position: 0px -1100px;
 }
 
-.card--Prune {
+.card--prune {
   background-position: 0px -1200px;
 }
 
-.card--Poire {
+.card--poire {
   background-position: 0px -1300px;
 }
 
-.card--Cerise {
+.card--cerise {
   background-position: 0px -1400px;
 }
 
-.card--Framboise {
+.card--framboise {
   background-position: 0px -1500px;
 }
 
-.card--Mangue {
+.card--mangue {
   background-position: 0px -1600px;
 }
 
-.card--CeriseJaune {
+.card--cerisejaune {
   background-position: 0px -1700px;
 }

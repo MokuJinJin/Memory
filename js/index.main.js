@@ -1,20 +1,17 @@
 $(document).ready(function(){
 	//alert('JQ');
+	
+
+	var memoryGame = new MemoryGame($('#Game'));
+	memoryGame.startGame();
+
 	$(".card").flip({
 		trigger: 'manual',
-		front:'.card--front',
-		back:'.card--back'
+		front:'.backCard',
+		back:'.visualCard'
 	});
-	$('.card').click(function(){
-		var actualCard = $(this);
-		var flip = actualCard.data("flip-model");
-		actualCard.flip('toggle');
-		
-		if (flip.isFlipped){
-			//actualCard.last().removeClass("card--banana");
-		}
-		else {
-			//actualCard.last().addClass("card--banana");
-		}
+
+	$('.card').click(function() {
+		memoryGame.cardClick($(this));
 	});
 });
