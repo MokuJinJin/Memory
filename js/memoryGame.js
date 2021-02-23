@@ -1,6 +1,6 @@
 function MemoryGame(jqObj){
 
-    this.JqObject = jqObj;
+    this.jqObject = jqObj;
 
     this.difficulty = new Difficulty(jqObj);
 
@@ -31,7 +31,7 @@ function MemoryGame(jqObj){
     this.resetNotMatchedFruit = function () {
         $.each(this.flippedCards.listOfCards, function (index, obj) {
             // on retourne la carte face non-visible
-            obj.JqObject.flip(false);
+            obj.jqObject.flip(false);
         });
         // on remet à zéro la liste des cartes visibles
         this.flippedCards.resetlistOfCards();
@@ -59,7 +59,7 @@ function MemoryGame(jqObj){
         this.flippedCards.addCard(clickedCard);
         
         // on anime la carte
-        clickedCard.JqObject.flip(true);
+        clickedCard.jqObject.flip(true);
         
         // si on a assez de cartes visibles
         if (this.flippedCards.isMaxCards()) {
