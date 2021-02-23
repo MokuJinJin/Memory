@@ -18,7 +18,6 @@ echo '<!DOCTYPE html>
 <script src="js/difficulty.js"></script>
 <script src="js/memoryGame.js"></script>
 <script src="js/index.main.js"></script>
-<script src="js/index.event.js"></script>
 </head>
 <body>';
 

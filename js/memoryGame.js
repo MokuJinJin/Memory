@@ -1,33 +1,56 @@
+/**
+ * @description Gestion du jeu
+ * @param {external:Jquery} jqObj
+ */
 function MemoryGame(jqObj){
 
     this.jqObject = jqObj;
 
+    /**
+    * Difficulté du jeu
+    */
     this.difficulty = new Difficulty(jqObj);
 
-    // Gestion des cartes visibles (retournées)
+    /*
+    * Gestion des cartes visibles (retournées)
+    */
     this.flippedCards = new CardPair();
 
     // TODO : Gestion du temps 
     console.log('Time to resolve : ' + this.difficulty.TimeToResolve);
 
-    // Nombre de paire trouvées
+    /*
+    * Nombre de paire trouvées
+    */
     this.numberOfPairFound = 0;
 
-    // si on a trouvé autant de paire que possible, on a gagné
+    
+    /**
+     * @description si on a trouvé autant de paire que possible, on a gagné
+     * @return {boolean} 
+     */
     this.isGameWin = function () {
         return this.difficulty.NumberOfMaxPair == this.numberOfPairFound;
     }
 
-    // rajoute une paire de cartes trouvée
+    /**
+     * @description rajoute une paire de cartes trouvée
+     */
     this.augmentPairFound = function(){
         this.numberOfPairFound++;
     }
 
+    /**
+     * @description Commence le jeu
+     */
     this.startGame = function(){
         console.log('Game Started !');
         // TODO : commence à décrémenter le temps
     }
 
+    /**
+     * @description Remet les cartes dans l'état d'origine : pas la bonne paire de cartes
+     */
     this.resetNotMatchedFruit = function () {
         $.each(this.flippedCards.listOfCards, function (index, obj) {
             // on retourne la carte face non-visible
@@ -37,6 +60,9 @@ function MemoryGame(jqObj){
         this.flippedCards.resetlistOfCards();
     }
 
+    /**
+     * @description Méthode pour décider de la fin du jeu
+     */
     this.checkWinGame = function () {
         if (this.isGameWin()) {
             alert("Vous avez gagné");
@@ -44,6 +70,11 @@ function MemoryGame(jqObj){
         }
     }
 
+    /**
+     * @description Gestion du click sur une carte
+     * Principale méthode du jeu
+     * @param {external:Jquery} jqObject
+     */
     this.cardClick = function(jqObject){
         
         // empèche de cliquer sur trop de carte en même temps

@@ -1,6 +1,4 @@
 $(document).ready(function(){
-	//alert('JQ');
-	
 
 	var memoryGame = new MemoryGame($('#Game'));
 	memoryGame.startGame();
