@@ -5,6 +5,10 @@
 function MemoryGame(jqObj){
 
     this.jqObject = jqObj;
+    /**
+     * Paramétrage du temps d'attente de retournement automatique des cartes
+     */
+    const tempsAttenteApresDeuxCarteDifferentes = 1800;
 
     /**
     * Difficulté du jeu
@@ -86,7 +90,7 @@ function MemoryGame(jqObj){
         var clickedCard = new FruitCard(jqObject);
 
         // si la carte est déjà marquée comme visible (retournée) on s'arrête
-        if (clickedCard.isFlipped()) {return;}
+        if (clickedCard.isFlipped() || this.flippedCards.isCardAlreadyThere(clickedCard)) {return;}
 
         // Ajout à la liste des cartes visibles
         this.flippedCards.addCard(clickedCard);
@@ -115,7 +119,7 @@ function MemoryGame(jqObj){
                     // Utilisation de bind() pour pouvoir passer 'this' en arguments dans la function 'handler' invoqué par setTimeout()
                     this.resetNotMatchedFruit.bind(this), 
                     // temps d'attente pour que l'on puisse voir les cartes que l'on a retournés
-                    1800);
+                    tempsAttenteApresDeuxCarteDifferentes);
             }
             //console.log(this.numberOfPairFound + '/' + this.difficulty.NumberOfMaxPair);
         }

@@ -39,4 +39,14 @@ function CardPair() {
     this.isCardsAreSameFruit = function () {
         return this.listOfCards[0].fruitName == this.listOfCards[1].fruitName;
     }
+
+    /**
+     * @description Regarde si l'ID de la carte est déjà présente dans la liste
+     * @param {FruitCard} fruitCard carte à ajouter
+     * @return {boolean} 
+     */
+    this.isCardAlreadyThere = function (fruitCard){
+        if (this.listOfCards.length == 0) {return false;}
+        return this.listOfCards[0].id == fruitCard.id;
+    }
 }
