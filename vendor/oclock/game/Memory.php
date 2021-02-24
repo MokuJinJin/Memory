@@ -35,7 +35,7 @@ class Memory {
 	 * @param  int $difficulty
 	 * @return void
 	 */
-	public function __construct($difficulty = EnumDifficulty::Easy){
+	public function __construct($difficulty = EnumDifficulty::Debug){
 		
 		$this->numberOfPair = $difficulty / 2;
 		

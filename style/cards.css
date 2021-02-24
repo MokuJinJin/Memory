@@ -97,3 +97,13 @@
 .card--cerisejaune {
   background-position: 0px -1700px;
 }
+
+.progressBar--back {
+  background-color: #ddd;
+}
+
+.progressBar--color {
+  width: 100%;
+  height: 30px;
+  background-color: #ad2222;
+}

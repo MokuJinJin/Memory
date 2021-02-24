@@ -1,42 +1,104 @@
-
 /**
  * @description Gestion du temps
- * @param {int} seconds nombre de secondes pour résoudre le jeu
- * @param {external:Jquery} jqObj objet Jquery pour faire l'affichage du temps restant
+ * @param {int} timeToResolve nombre de secondes pour résoudre le jeu
+ * @param {external:Jquery} jqObjTime objet Jquery pour faire l'affichage du temps restant
+ * @param {external:Jquery} jqObjProgressBar objet Jquery pour faire l'affichage de la barre de progression inversée
  */
-function CountDown(seconds, jqObj) {
+function CountDown(timeToResolve, jqObjTimeText, jqObjProgressBar){
+    
+    this.secondsToResolve = timeToResolve;
+    this.jqTimeText = jqObjTimeText;
+    this.jqProgressBar = jqObjProgressBar;
+    
+    this.active = false;
 
-    this.timeToResolve = seconds;
+    /**
+     * permet d'obtenir le temps restant en millisecondes
+     */
+    this.tempsRestant = 0;
+    
+    /**
+     * @description indique si le compte à rebours est actif
+     * @return {boolean} 
+     */
+    this.isActive = function(){
+        return this.active;
+    }
 
-    this.startCountDown = function () {
+    /**
+     * @description Transforme des secondes en affichage minutes/secondes
+     * @param {int} diff temps exprimé en millisecondes
+     * @returns {string} affichage minutes/secondes
+     */
+    this.transformeTempsEnTexte = function(diff){
+        return this.calculDuResteEnMinute(diff) + "m " + this.calculDuResteEnSeconde(diff) + "s ";
+    }
+
+    /**
+     * @description Calcul sur le temps restant pour obtenir uniquement les minutes
+     * @param {int} diff temps exprimé en millisecondes
+     * @return {int} temps restant exprimé en minutes
+     */
+    this.calculDuResteEnMinute = function (diff){
+        return Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+    }
+
+    /**
+     * @description Calcul sur le temps restant pour obtenir uniquement les secondes
+     * @param {int} diff temps exprimé en millisecondes
+     * @return {int} temps restant exprimé en secondes
+     */
+    this.calculDuResteEnSeconde = function(diff){
+        return Math.floor((diff % (1000 * 60)) / 1000);
+    }
+
+    /**
+     * @description fonction exécuté à chaque secondes par le setInterval
+     */
+    this.handlerInterval = function () {
+        // heure du jour
+        var now = new Date().getTime();
+
+        // calcul de la différence de temps
+        this.tempsRestant = this.countDownDate - now;
+
+        // calculs 
+        var minutes = this.calculDuResteEnMinute(this.tempsRestant);
+        var secondes = this.calculDuResteEnSeconde(this.tempsRestant);
+        var totalSecondesRestantes = (minutes * 60) + secondes;
+        var percent = Math.floor((totalSecondesRestantes * 100) / this.secondsToResolve);
+
+        // on écrit le temps pour le joueur
+        this.jqTimeText.text(this.transformeTempsEnTexte(this.tempsRestant));
+
+        // on applique le pourcentage de temps restant sur la progressBar
+        this.jqProgressBar.width(percent + '%');
         
-        var countDownDate = new Date();
+        // si le temps est écoulé, le jeu se termine
+        if (this.tempsRestant < 1000) {
+            clearInterval(this.IntervalId);
+            this.jqTimeText.text("temps écoulé");
+            alert("temps écoulé, Perdu :'(");
+        }
+    }
+
+    /**
+     * @description Commence le compte à rebours
+     */
+    this.startCountDown = function(){
         // on ajoute le temps (en secondes) pour résoudre le jeu
-        countDownDate.setSeconds(countDownDate.getSeconds() + this.timeToResolve);
+        this.countDownDate = new Date();
+        this.countDownDate.setSeconds(this.countDownDate.getSeconds() + timeToResolve);
 
-        // mise à jour toutes les secondes
-        var x = setInterval(function () {
+        this.active = true;
+        this.IntervalId = setInterval(this.handlerInterval.bind(this), 1000);
+    }
 
-            // heure du jour
-            var now = new Date().getTime();
-
-            // calcul de la différence de temps
-            var distance = countDownDate - now;
-
-            // calculs 
-            var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-            var seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-            // on écrit le temps pour le joueur
-            jqObj.text(minutes + "m " + seconds + "s ");
-
-            // si le temps est écoulé, le jeu se termine
-            if (distance < 0) {
-                clearInterval(x);
-                jqObj.text("temps écoulé");
-                alert("temps écoulé, Perdu :'(");
-            }
-        }, 1000);
+    /**
+     * @description Arrête le compte à rebours
+     */
+    this.stopCountDown = function(){
+        this.active = false;
+        clearInterval(this.IntervalId);
     }
 }
-

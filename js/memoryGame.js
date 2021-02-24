@@ -21,6 +21,10 @@ function MemoryGame(jqObj){
     */
     this.numberOfPairFound = 0;
 
+    /**
+     * Gestion du temps
+     */
+    this.countdown = new CountDown(this.difficulty.TimeToResolve, $("#countDown"), $(".progressBar--color"));
     
     /**
      * @description si on a trouvé autant de paire que possible, on a gagné
@@ -42,9 +46,7 @@ function MemoryGame(jqObj){
      */
     this.startGame = function(){
         console.log('Game Started !');
-        
-        var countDown = new CountDown(this.difficulty.TimeToResolve, $("#countDown"));
-        countDown.startCountDown();
+        this.countdown.startCountDown();
     }
 
     /**
@@ -64,7 +66,8 @@ function MemoryGame(jqObj){
      */
     this.checkWinGame = function () {
         if (this.isGameWin()) {
-            alert("Vous avez gagné");
+            this.countdown.stopCountDown();
+            alert("Vous avez gagné, il vous restait "+this.countdown.transformeTempsEnTexte(this.countdown.tempsRestant));
             // TODO : log time using ajax
         }
     }

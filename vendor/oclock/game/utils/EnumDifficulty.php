@@ -7,6 +7,11 @@
 class EnumDifficulty {
 
     /**
+     * Debug : 4 cartes
+     */
+    const Debug = 4;
+    
+    /**
      * Easy : 16 cartes
      */
     const Easy = 16;
@@ -34,9 +39,11 @@ class EnumDifficulty {
      */
     public static function timeToResolve($difficulty) {
         switch ($difficulty) {
-            case EnumDifficulty::Easy:
-                // TODO 120s
+            case EnumDifficulty::Debug:
                 return 10;
+                break;
+            case EnumDifficulty::Easy:
+                return 120;
                 break;
             case EnumDifficulty::Normal:
                 return 150;

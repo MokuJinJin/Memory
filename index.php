@@ -21,10 +21,14 @@ echo '<!DOCTYPE html>
 <script src="js/index.main.js"></script>
 </head>
 <body>
-<span id="countDown"></span>
 <br>';
 
 Board::printBoard($game);
+
+echo '<span id="countDown">calcul du temps restant ...</span>';
+echo '<div id="progressBar" class="progressBar--back">
+        <div class="progressBar--color"></div>
+    </div>';
 
 echo '</body>
 </html>';

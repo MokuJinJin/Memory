@@ -55,3 +55,15 @@ $card-names: (
   }
 
 }
+
+.progressBar {
+  &--back {
+    background-color: #ddd;
+  }
+  &--color {
+    width: 100%;
+    height: 30px;
+    background-color: #ad2222;
+  }
+}
+
