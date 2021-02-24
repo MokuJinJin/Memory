@@ -25,7 +25,7 @@ echo '<!DOCTYPE html>
 
 Board::printBoard($game);
 
-echo '<span id="countDown">calcul du temps restant ...</span>';
+echo '<span id="countDown">affichage du temps restant ...</span>';
 echo '<div id="progressBar" class="progressBar--back">
         <div class="progressBar--color"></div>
     </div>';

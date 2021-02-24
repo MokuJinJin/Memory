@@ -62,22 +62,19 @@ function CountDown(timeToResolve, jqObjTimeText, jqObjProgressBar){
         // calcul de la différence de temps
         this.tempsRestant = this.countDownDate - now;
 
-        // calculs 
-        var minutes = this.calculDuResteEnMinute(this.tempsRestant);
-        var secondes = this.calculDuResteEnSeconde(this.tempsRestant);
-        var totalSecondesRestantes = (minutes * 60) + secondes;
-        var percent = Math.floor((totalSecondesRestantes * 100) / this.secondsToResolve);
-
         // on écrit le temps pour le joueur
         this.jqTimeText.text(this.transformeTempsEnTexte(this.tempsRestant));
 
-        // on applique le pourcentage de temps restant sur la progressBar
+        // calcul du pourcentage de temps restant pour la progressBar
+        var percent = this.tempsRestant / (this.secondsToResolve * 10);
         this.jqProgressBar.width(percent + '%');
         
         // si le temps est écoulé, le jeu se termine
         if (this.tempsRestant < 1000) {
-            clearInterval(this.IntervalId);
+            this.jqProgressBar.width('0%');
             this.jqTimeText.text("temps écoulé");
+            this.stopCountDown();
+            
             alert("temps écoulé, Perdu :'(");
         }
     }

@@ -45,7 +45,7 @@ function MemoryGame(jqObj){
      * @description Commence le jeu
      */
     this.startGame = function(){
-        console.log('Game Started !');
+        //console.log('Game Started !');
         this.countdown.startCountDown();
     }
 
