@@ -1,12 +1,12 @@
 <?php namespace oclock\game;
 
 /**
- * Card
+ * Carte
  */
 class Card {	
 	
 	/**
-	 * card Name
+	 * Nom de la carte
 	 *
 	 * @var string
 	 */
@@ -15,7 +15,7 @@ class Card {
 	/**
 	 * __construct
 	 *
-	 * @param  string $EnumCard
+	 * @param  string $cardName Nom de la carte
 	 * @return void
 	 */
 	public function __construct($cardName){

@@ -6,7 +6,7 @@
 class EnumCard {
 
     /**
-     * Liste des cartes disponibles
+     * Liste des noms de cartes disponibles
      */
     const cards = array(
         "apple",

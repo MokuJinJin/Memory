@@ -7,7 +7,7 @@ use \oclock\game\utils\EnumCard;
 class Memory {
 		
 	/**
-	 * List of cards in the game
+	 * Liste de toutes les cartes du jeu
 	 *
 	 * @var Card[]
 	 */

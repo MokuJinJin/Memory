@@ -12,7 +12,4 @@ $(document).ready(function(){
 	$('.card').click(function() {
 		memoryGame.cardClick($(this));
 	});
-
-	
-
 });
