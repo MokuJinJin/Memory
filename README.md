@@ -1,7 +1,7 @@
 # Memory
 Test technique Recrutement 2021
 
-Notions abordées dans cet exercice :
+Le but de cet exercice étant de préparer un cours, voici les notions abordées :
 
 ### PHP :
 
@@ -23,9 +23,11 @@ Utilisation de composer et de son autoloading (PSR-4)
 
 Utilisation de toute l'architecture : index.php
 
-// TODO
+Connexion base de donnée, Héritage de classe : Base_Dal.php
 
-Utilisation base de donnée, lecture
+Utilisation base de donnée, lecture : DAL.php
+
+// TODO
 
 réception d'un appel Ajax
 
