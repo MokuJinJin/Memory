@@ -1,7 +1,7 @@
 # Memory
 Test technique Recrutement 2021
 
-Le but de cet exercice étant de préparer un cours, voici les notions abordées :
+Le but de cet exercice étant de préparer un cours, voici les notions abordées dans l'ordre de mon developpement :
 
 ### PHP :
 
@@ -27,11 +27,9 @@ Connexion base de donnée, Héritage de classe : Base_Dal.php
 
 Utilisation base de donnée, lecture : DAL.php
 
-// TODO
+réception d'un appel Ajax : ajax/newHighScore.php
 
-réception d'un appel Ajax
-
-Utilisation base de donnée, écriture
+Utilisation base de donnée, écriture : ajax/newHighScore.php, DAL.php
 
 
 ### JS : 
@@ -50,9 +48,7 @@ Utilisation de setTimeOut dans une classe : memoryGame.js
 
 Utilisation de Jquery, des autres classes : memoryGame.js
 
-// TODO
-
-Utilisation d'ajax avec jquery
+Utilisation d'ajax avec jquery : memoryGame.js
 
 ### SCSS : 
 
