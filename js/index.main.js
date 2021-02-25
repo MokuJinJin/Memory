@@ -12,4 +12,9 @@ $(document).ready(function(){
 	$('.card').click(function() {
 		memoryGame.cardClick($(this));
 	});
+
+	$("#select_difficulty").on("change",function(){
+		$('#form_difficulty').submit();
+	});
+	
 });
