@@ -2,6 +2,7 @@
 
 use \oclock\game\bdd\DAL;
 use \oclock\game\utils\Utilitaire;
+use \oclock\game\utils\EnumDifficulty;
 
 /**
  * Classe qui crée le plateau de jeu
@@ -75,5 +76,26 @@ class Board {
         }
 
         echo '</div>';
+    }
+    
+    /**
+     * printDifficulty
+     *
+     * @param int selectedDifficulty Difficulté sélectionné
+     * @return void
+     */
+    public static function printDifficulty($selectedDifficulty){
+        $allDifficulties = EnumDifficulty::getAllDifficultyTexte();
+        echo '<form method="POST" id="form_difficulty" action="index.php">';
+        echo '<select id="select_difficulty" name="difficulty">';
+        foreach ($allDifficulties as $key => $texte) {
+            echo '<option value="'.$key.'"';
+            if ($selectedDifficulty == $key){echo ' selected ';}
+            echo '>';
+            echo $texte;
+            echo '</option>';
+        }
+        echo '</select>';
+        echo '</form>';
     }
 }

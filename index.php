@@ -5,7 +5,15 @@ use \oclock\game\Memory;
 use \oclock\game\utils\EnumDifficulty;
 use \oclock\game\Board;
 
-$Difficulty = EnumDifficulty::Debug;
+if(array_key_exists("difficulty", $_POST))
+{
+    $Difficulty = EnumDifficulty::getDifficultyFromText($_POST["difficulty"]);
+}
+else 
+{
+    $Difficulty = EnumDifficulty::Debug;
+    $_POST["difficulty"] = "Debug";
+}
 
 $game = new Memory($Difficulty);
 
@@ -24,12 +32,11 @@ echo '<!DOCTYPE html>
 <script src="js/memoryGame.js"></script>
 <script src="js/index.main.js"></script>
 </head>
-<body>
-<br>';
+<body>';
+
+Board::printDifficulty($_POST["difficulty"]);
 
 Board::printBoard($game);
-
-
 
 echo '<span id="countDown">affichage du temps restant ...</span>';
 echo '<div id="progressBar" class="progressBar--back">
