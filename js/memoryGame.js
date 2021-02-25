@@ -82,12 +82,12 @@ function MemoryGame(jqObj) {
                 data: { 'high_score': JSON.stringify(highScore)},
                 dataType: 'json'
             }).done(function () {
-                alert("success");
+                //alert("success");
             })
             .fail(function (dataError) {
                 console.log(dataError);
-                alert("error : " + dataError);
-                //alert("l'enregistrement de la partie n'a pas pu être effectué, désolé.");
+                //alert("error : " + dataError);
+                alert("l'enregistrement de la partie n'a pas pu être effectué, désolé.");
             });
         }
     }
