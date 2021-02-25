@@ -71,7 +71,7 @@ function MemoryGame(jqObj){
     this.checkWinGame = function () {
         if (this.isGameWin()) {
             this.countdown.stopCountDown();
-            alert("Vous avez gagné, il vous restait "+this.countdown.transformeTempsEnTexte(this.countdown.tempsRestant));
+            alert("Vous avez gagné en "+this.countdown.transformeTempsEnTexte(this.countdown.secondsToResolve * 1000 - this.countdown.tempsRestant));
             // TODO : log time using ajax
         }
     }

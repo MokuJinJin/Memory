@@ -1,20 +1,29 @@
 <?php namespace oclock\game\bdd;
 
 /**
- * Class Base_DAL
+ * Base_DAL
  */
 class Base_DAL {
-    /**
-     * DatabaseName
-     */
 	 
-	protected static $DatabaseName;
-	protected static $ENV;
-	/** @var \PDO Active */
-	protected static $pdo;
-
+	/**
+     * Nom de la base de donnée
+     */
+    protected static $DatabaseName;
+	/**
+     * Connexion PDO à la base de donnée
+     */
+    protected static $pdo;
+    /**
+     * Serveur de la base de donnée (localhost)
+     */
 	protected static $host;
+    /**
+     * Nom de l'utilisateur pour se connecter à la base de donnée
+     */
 	protected static $login;
+    /**
+     * Mot de passe de l'utilisateur pour se connecter à la base de donnée
+     */
 	protected static $mpd;
 
     /**
@@ -29,13 +38,11 @@ class Base_DAL {
      */
     protected static function Connect()
     {
-        self::$ENV='dev';
-
         if (self::$pdo == null)
         {
             ini_set('display_errors',1);
             error_reporting (E_ALL & ~E_NOTICE);
-            self::$DatabaseName = 'memory';
+            self::$DatabaseName = 'oclockmemory';
             self::$host = 'localhost';
             self::$login = 'root';
             self::$mpd = '';
@@ -80,8 +87,8 @@ class Base_DAL {
     {
         $pdo = self::Connect();
         $ress = $pdo->query($req);
-		if($ENV=='dev' && $pdo->errorCode()) print_r($pdo->errorInfo());
-		if($ENV=='dev' && $ress->errorCode()) print_r($ress->errorInfo());
+		//if($pdo->errorCode()) print_r($pdo->errorInfo());
+		//if($ress->errorCode()) print_r($ress->errorInfo());
         $all = array();
         while($row = $ress->fetchObject($what))
         {

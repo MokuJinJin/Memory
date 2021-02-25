@@ -1,5 +1,7 @@
 <?php namespace oclock\game;
 
+use \oclock\game\bdd\DAL;
+use \oclock\game\utils\Utilitaire;
 
 /**
  * Classe qui crée le plateau de jeu
@@ -50,5 +52,29 @@ class Board {
                 <div class="visualCard card--'.$cardName.'" ></div>
         </td>
         ';
+    }
+    
+    /**
+     * printHighScore
+     *
+     * @param  EnumDifficulty $difficulty Niveau de difficulté
+     * @param  int $nombre Nombre de meilleurs HighScore à afficher
+     * @return void
+     */
+    public static function printHighScore($difficulty, $nombre = 3){
+        $bestHighScore = DAL::GetBestHighScoreForDifficulty($difficulty, $nombre);
+
+        echo '<div id="high-score">';
+
+        if (count($bestHighScore) == 0){echo "<span>Aucun score pour l'instant</span>";}
+
+        foreach ($bestHighScore as $key => $highScore) {
+            echo '<span>'.$highScore->PlayerName.'</span>';
+            echo ' en <span>'.Utilitaire::transformeTempsEnTexte($highScore->ElapsedTime).'</span>';
+            echo ' le <span>'.date_format(new \DateTime($highScore->Date),'d/m/Y H:i:s').'</span>';
+            echo "<br/>";
+        }
+
+        echo '</div>';
     }
 }
