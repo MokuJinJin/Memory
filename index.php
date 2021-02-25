@@ -5,7 +5,7 @@ use \oclock\game\Memory;
 use \oclock\game\utils\EnumDifficulty;
 use \oclock\game\Board;
 
-$Difficulty = EnumDifficulty::Normal;
+$Difficulty = EnumDifficulty::Debug;
 
 $game = new Memory($Difficulty);
 
@@ -16,6 +16,7 @@ echo '<!DOCTYPE html>
 <script src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script src="https://cdn.rawgit.com/nnattawat/flip/master/dist/jquery.flip.min.js"></script>
 
+<script src="js/ajax/highScore.js"></script>
 <script src="js/fruitCard.js"></script>
 <script src="js/cardPair.js"></script>
 <script src="js/difficulty.js"></script>

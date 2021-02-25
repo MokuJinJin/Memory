@@ -1,2 +1,7 @@
-Order allow,deny
-Deny from all
+SetEnvIf Referer localhost internal 
+# 
+<Files *> 
+order Deny,Allow 
+Deny from all 
+Allow from env=internal 
+</Files> 

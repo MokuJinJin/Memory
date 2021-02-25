@@ -14,7 +14,7 @@ class DAL extends Base_DAL {
      */
     public static function GetAllHighScoreForDifficulty($difficulty)
     {
-		$req = "select id,PlayerName,Difficulty,ElapsedTime,Date from `high_score` where Difficulty = ".$difficulty.";";
+		$req = "select id,PlayerName,Difficulty,ElapsedTime from `high_score` where Difficulty = ".$difficulty.";";
         $allHighScore = self::GetAllSomething($req,EnumBddClass::HighScore);
 
         return $allHighScore;
@@ -27,7 +27,7 @@ class DAL extends Base_DAL {
      */
     public static function GetBestHighScoreForDifficulty($difficulty, $nombre)
     {
-        $req = "select id,PlayerName,Difficulty,ElapsedTime,Date from `high_score` where Difficulty = ".$difficulty." order by ElapsedTime asc limit ".$nombre.";";
+        $req = "select id,PlayerName,Difficulty,ElapsedTime from `high_score` where Difficulty = ".$difficulty." order by ElapsedTime asc limit ".$nombre.";";
         $allHighScore = self::GetAllSomething($req,EnumBddClass::HighScore);
 
         return $allHighScore;
@@ -38,7 +38,7 @@ class DAL extends Base_DAL {
 	 */
 	public static function AddHighScore($highScore)
 	{
-			$req = "insert into `high_score` (PlayerName,Difficulty,ElapsedTime,Date) VALUES ('".$highScore->PlayerName."',".$highScore->Difficulty.",'".$highScore->ElapsedTime."', '".date_format($highScore->Date,'Y-m-d H:i:s')."')";
+			$req = "insert into `high_score` (PlayerName,Difficulty,ElapsedTime) VALUES ('".$highScore->PlayerName."',".$highScore->Difficulty.",'".$highScore->ElapsedTime."');";
 			self::AddSomething($req);
 	}
 

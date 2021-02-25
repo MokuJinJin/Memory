@@ -16,15 +16,13 @@ class HighScore {
      * @param  mixed $playerName Nom du joueur
      * @param  mixed $difficulty Niveau de difficulté
      * @param  mixed $time Temps en millisecondes
-     * @param  mixed $date Date/Time de la partie
      * @return void
      */
-    public static function fullConstruct($playerName, $difficulty, $time, $date){
+    public static function fullConstruct($playerName, $difficulty, $time){
         $instance = new HighScore();
         $instance->PlayerName = $playerName;
         $instance->Difficulty = $difficulty;
         $instance->ElapsedTime = $time;
-        $instance->Date = $date;
         return $instance;
     }
     
@@ -44,8 +42,4 @@ class HighScore {
      * int Temps en millisecondes pour terminer le jeu
      */
     public $ElapsedTime;
-    /**
-     * Date/Time de la partie
-     */
-    public $Date;
 }

@@ -2,7 +2,7 @@
  * @description Gestion du jeu
  * @param {external:Jquery} jqObj
  */
-function MemoryGame(jqObj){
+function MemoryGame(jqObj) {
 
     this.jqObject = jqObj;
     /**
@@ -29,7 +29,7 @@ function MemoryGame(jqObj){
      * Gestion du temps
      */
     this.countdown = new CountDown(this.difficulty.TimeToResolve, $("#countDown"), $(".progressBar--color"));
-    
+
     /**
      * @description si on a trouvé autant de paire que possible, on a gagné
      * @return {boolean} 
@@ -41,14 +41,14 @@ function MemoryGame(jqObj){
     /**
      * @description rajoute une paire de cartes trouvée
      */
-    this.augmentPairFound = function(){
+    this.augmentPairFound = function () {
         this.numberOfPairFound++;
     }
 
     /**
      * @description Commence le jeu
      */
-    this.startGame = function(){
+    this.startGame = function () {
         //console.log('Game Started !');
         this.countdown.startCountDown();
     }
@@ -71,8 +71,24 @@ function MemoryGame(jqObj){
     this.checkWinGame = function () {
         if (this.isGameWin()) {
             this.countdown.stopCountDown();
-            alert("Vous avez gagné en "+this.countdown.transformeTempsEnTexte(this.countdown.secondsToResolve * 1000 - this.countdown.tempsRestant));
-            // TODO : log time using ajax
+            var elapsedTime = this.countdown.secondsToResolve * 1000 - this.countdown.tempsRestant;
+            // TODO : demander le nom du joueur
+            alert("Vous avez gagné en " + this.countdown.transformeTempsEnTexte(elapsedTime));
+            
+            var highScore = new HighScore("Anonymous", (this.difficulty.NumberOfMaxPair * 2), elapsedTime)
+            $.ajax({
+                url: "vendor/oclock/game/ajax/newHighScore.php",
+                type: 'POST',
+                data: { 'high_score': JSON.stringify(highScore)},
+                dataType: 'json'
+            }).done(function () {
+                alert("success");
+            })
+            .fail(function (dataError) {
+                console.log(dataError);
+                alert("error : " + dataError);
+                //alert("l'enregistrement de la partie n'a pas pu être effectué, désolé.");
+            });
         }
     }
 
@@ -81,23 +97,23 @@ function MemoryGame(jqObj){
      * Principale méthode du jeu
      * @param {external:Jquery} jqObject
      */
-    this.cardClick = function(jqObject){
-        
+    this.cardClick = function (jqObject) {
+
         // empèche de cliquer sur trop de carte en même temps
-        if (this.flippedCards.isMaxCards()) {return;}
-        
+        if (this.flippedCards.isMaxCards()) { return; }
+
         // récupération des informations de la cartes 'en cours'
         var clickedCard = new FruitCard(jqObject);
 
         // si la carte est déjà marquée comme visible (retournée) on s'arrête
-        if (clickedCard.isFlipped() || this.flippedCards.isCardAlreadyThere(clickedCard)) {return;}
+        if (clickedCard.isFlipped() || this.flippedCards.isCardAlreadyThere(clickedCard)) { return; }
 
         // Ajout à la liste des cartes visibles
         this.flippedCards.addCard(clickedCard);
-        
+
         // on anime la carte
         clickedCard.jqObject.flip(true);
-        
+
         // si on a assez de cartes visibles
         if (this.flippedCards.isMaxCards()) {
 
@@ -117,7 +133,7 @@ function MemoryGame(jqObj){
                 // les cartes sont différentes
                 setTimeout(
                     // Utilisation de bind() pour pouvoir passer 'this' en arguments dans la function 'handler' invoqué par setTimeout()
-                    this.resetNotMatchedFruit.bind(this), 
+                    this.resetNotMatchedFruit.bind(this),
                     // temps d'attente pour que l'on puisse voir les cartes que l'on a retournés
                     tempsAttenteApresDeuxCarteDifferentes);
             }

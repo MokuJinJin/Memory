@@ -71,7 +71,6 @@ class Board {
         foreach ($bestHighScore as $key => $highScore) {
             echo '<span>'.$highScore->PlayerName.'</span>';
             echo ' en <span>'.Utilitaire::transformeTempsEnTexte($highScore->ElapsedTime).'</span>';
-            echo ' le <span>'.date_format(new \DateTime($highScore->Date),'d/m/Y H:i:s').'</span>';
             echo "<br/>";
         }
 
