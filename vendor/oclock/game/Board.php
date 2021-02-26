@@ -48,7 +48,8 @@ class Board {
      */
     public static function printCard($id, $cardName, $includeTitle = false){
         echo '<td class="card" id="'.$id.'" data-fruit="'.$cardName.'"';
-        if ($includeTitle) {echo ' title="'.$cardName.'">';}
+        if ($includeTitle) {echo ' title="'.$cardName.'"';}
+        echo ">";
         echo '<div class="backCard"></div>    
                 <div class="visualCard card--'.$cardName.'" ></div>
         </td>

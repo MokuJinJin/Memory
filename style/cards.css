@@ -12,6 +12,20 @@
   border-radius: 25px;
 }
 
+body {
+  display: flex;
+  justify-content: center;
+  background: #222f3e;
+  color: white;
+}
+
+.text--aucun-score {
+  font-style: italic;
+}
+
+/*
+Mise en forme des cartes
+*/
 .card {
   cursor: pointer;
   height: 100px;
@@ -116,13 +130,9 @@
   background: linear-gradient(0deg, #ee5253 0%, #ff9f43 40%, #eca048 60%, #10ac84 100%);
 }
 
-body {
-  display: flex;
-  justify-content: center;
-  background: #222f3e;
-  color: white;
-}
-
+/*
+Mise en formes des sections
+*/
 .boardGame {
   flex-grow: 0;
 }
@@ -140,14 +150,13 @@ body {
   padding: 5px;
 }
 
-.text--aucun-score {
-  font-style: italic;
-}
-
 #countDown {
   display: none;
 }
 
+/*
+Surprise :D
+*/
 .konami {
   background-color: yellow;
 }
