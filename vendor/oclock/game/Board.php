@@ -20,7 +20,7 @@ class Board {
      * @param  Memory $game Paramètre du jeu
      * @return void
      */
-    public static function printBoard($game)
+    public static function printBoard($game, $includeCardTitle = false)
     {
         /* Calcul du nombre de ligne et colonne en fonction du nombre de cartes */
         $numberOfCards = count($game->cards);
@@ -30,7 +30,7 @@ class Board {
         echo '<table id="Game" data-pair="'.$game->numberOfPair.'" data-seconds="'.$game->timeToResolve.'"><tr>';
         foreach ($game->cards as $id => $card) {
             
-            Board::printCard($id, $card->cardName);
+            Board::printCard($id, $card->cardName, $includeCardTitle);
             
             if (($id+1) % $rows == 0) {echo '</tr><tr>';}
 		}
@@ -46,10 +46,10 @@ class Board {
      * @param  string $cardName
      * @return void
      */
-    public static function printCard($id, $cardName){
-        echo '
-        <td class="card" id="'.$id.'" data-fruit="'.$cardName.'" title="'.$cardName.'">
-                <div class="backCard"></div>    
+    public static function printCard($id, $cardName, $includeTitle = false){
+        echo '<td class="card" id="'.$id.'" data-fruit="'.$cardName.'"';
+        if ($includeTitle) {echo ' title="'.$cardName.'">';}
+        echo '<div class="backCard"></div>    
                 <div class="visualCard card--'.$cardName.'" ></div>
         </td>
         ';
@@ -66,15 +66,20 @@ class Board {
         $bestHighScore = DAL::GetBestHighScoreForDifficulty($difficulty, $nombre);
 
         echo '<div id="high-score">';
+        echo '<p>Les meilleurs scores :</p>';
 
-        if (count($bestHighScore) == 0){echo "<span>Aucun score pour l'instant</span>";}
-
-        foreach ($bestHighScore as $key => $highScore) {
-            echo '<span>'.$highScore->PlayerName.'</span>';
-            echo ' en <span>'.Utilitaire::transformeTempsEnTexte($highScore->ElapsedTime).'</span>';
-            echo "<br/>";
+        if (count($bestHighScore) == 0) {
+            echo "<span class=\"text--aucun-score\">Aucun score pour l'instant :'(</span>";
         }
 
+        echo '<ul>';
+        foreach ($bestHighScore as $key => $highScore) {
+            echo '<li>';
+            echo '<span>'.$highScore->PlayerName.'</span>';
+            echo ' en <span>'.Utilitaire::transformeTempsEnTexte($highScore->ElapsedTime).'</span>';
+            echo "</li>";
+        }
+        echo '</ul>';
         echo '</div>';
     }
     

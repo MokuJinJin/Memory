@@ -67,11 +67,11 @@ function CountDown(timeToResolve, jqObjTimeText, jqObjProgressBar){
 
         // calcul du pourcentage de temps restant pour la progressBar
         var percent = this.tempsRestant / (this.secondsToResolve * 10);
-        this.jqProgressBar.width(percent + '%');
+        this.jqProgressBar.height(percent + '%');
         
         // si le temps est écoulé, le jeu se termine
         if (this.tempsRestant < 1000) {
-            this.jqProgressBar.width('0%');
+            this.jqProgressBar.height('0%');
             this.jqTimeText.text("temps écoulé");
             this.stopCountDown();
             

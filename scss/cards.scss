@@ -8,18 +8,25 @@
   background-image: url("https://static.oclock.io/challenges/tests-techniques/cards.png");
 }
 
+%card-border-radius {
+  border-radius : 25px;
+}
+
+$card-height : 100px;
+
 .card {
+  @extend %card-border-radius;
   cursor: pointer;
-  height:100px;
+  height:$card-height;
 	width:100px;
-	margin :10px;
+	
   &--active {
     cursor: not-allowed;
   }
 }
 
 .backCard {
-  border-radius : 25px;
+  @extend %card-border-radius;
   background-image: url('card_back.png');
   background-repeat: no-repeat;
   background-position: center;
@@ -56,14 +63,68 @@ $card-names: (
 
 }
 
+// 4 cartes de haut donc le barre de progression fait 4 fois cette hauteur
+$countdown-height : $card-height * 4;
+
 .progressBar {
   &--back {
-    background-color: #ddd;
+    height: $countdown-height;
+    background-color: #576574;
+    border-radius: 100px;
+    overflow: hidden;
+    display: flex;
+    flex-direction:column;
+    justify-content: flex-end;
   }
   &--color {
-    width: 100%;
-    height: 30px;
-    background-color: #ad2222;
+    height: $countdown-height;
+    //background-color: #ee5253;
+    background: rgb(238,82,83);
+    background: linear-gradient(0deg, rgba(238,82,83,1) 0%, rgba(255,159,67,1) 40%, rgba(236,160,72,1) 60%, rgba(16,172,132,1) 100%);
   }
 }
 
+body {
+  display: flex;
+  justify-content : center;
+  background: #222f3e;
+  color: white;
+}
+
+
+.boardGame {
+  flex-grow: 0;
+}
+.sablier {
+  flex-basis: 32px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 0px 5px 10px 5px;
+}
+
+.informations {
+  flex-basis: 33%;
+  padding: 5px;
+}
+
+.text--aucun-score {
+  font-style: italic;
+}
+
+#countDown {
+  display: none;
+}
+
+.konami {
+  background-color: yellow;
+}
+.konami .informations {
+  background-color: rebeccapurple;
+}
+.konami .sablier {
+  background-color: chartreuse;
+}
+.konami .boardGame {
+  background-color: hotpink;
+}
