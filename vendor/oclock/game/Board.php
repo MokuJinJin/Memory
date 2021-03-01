@@ -104,4 +104,21 @@ class Board {
         echo '</select>';
         echo '</form>';
     }
+    
+    /**
+     * printWinnerPopup
+     *
+     * @return void
+     */
+    public static function printWinnerPopup()
+    {
+        echo '<div id="winner-popup">';
+        echo '<div id="winner-popup--title">Bravo !</div>';
+        echo '<p>Vous avez gagnez en <span id="winner-popup--time">Xm XXs</span></p>';
+        echo '<div id="winner-popup--form">';
+        echo '<input type="text" name="playerName" id="winner-popup--playerName" placeholder="Votre nick en 3 lettres" maxlength="3">';
+        echo '<input type="submit" value="Enregistrer" id="winner-popup--btnValider">';
+        echo '</div>';
+        echo '</div>';
+    }
 }

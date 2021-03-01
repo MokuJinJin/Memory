@@ -66,30 +66,54 @@ function MemoryGame(jqObj) {
     }
 
     /**
+     * @description calcul du temps passé en fin de jeu
+     * @return {int} 
+     */
+    this.getElapsedTime = function(){
+        return this.countdown.secondsToResolve * 1000 - this.countdown.tempsRestant;
+    }
+
+    /**
      * @description Méthode pour décider de la fin du jeu
      */
     this.checkWinGame = function () {
         if (this.isGameWin()) {
             this.countdown.stopCountDown();
-            var elapsedTime = this.countdown.secondsToResolve * 1000 - this.countdown.tempsRestant;
-            // TODO : demander le nom du joueur
-            alert("Vous avez gagné en " + this.countdown.transformeTempsEnTexte(elapsedTime));
             
-            var highScore = new HighScore("Anonymous", (this.difficulty.NumberOfMaxPair * 2), elapsedTime)
-            $.ajax({
-                url: "vendor/oclock/game/ajax/newHighScore.php",
-                type: 'POST',
-                data: { 'high_score': JSON.stringify(highScore)},
-                dataType: 'json'
-            }).done(function () {
-                //alert("success");
-            })
-            .fail(function (dataError) {
-                console.log(dataError);
-                //alert("error : " + dataError);
-                alert("l'enregistrement de la partie n'a pas pu être effectué, désolé.");
-            });
+            //alert("Vous avez gagné en " + this.countdown.transformeTempsEnTexte(elapsedTime));
+            $("#winner-popup--time").text(this.countdown.transformeTempsEnTexte(this.getElapsedTime()));
+
+            $("#winner-popup--btnValider").click(this.winnerSaveHighScore.bind(this));
+            
+            $("#winner-popup").css("display","flex");
+            
         }
+    }
+    
+    /**
+     * @description Méthode pour enregistrer le high score
+     */
+    this.winnerSaveHighScore = function(){
+        var playerName = $("#winner-popup--playerName").val();
+        if (playerName.length > 3) {playerName = playerName.substring(0, 3);}
+
+        var highScore = new HighScore(playerName, (this.difficulty.NumberOfMaxPair * 2), this.getElapsedTime())
+
+        $.ajax({
+            url: "vendor/oclock/game/ajax/newHighScore.php",
+            type: 'POST',
+            data: { 'high_score': JSON.stringify(highScore)},
+            dataType: 'json'
+        }).done(function () {
+            //alert("success");
+            $("#winner-popup").css("display","none");
+        })
+        .fail(function (dataError) {
+            console.log(dataError);
+            //alert("error : " + dataError);
+            alert("l'enregistrement de la partie n'a pas pu être effectué, désolé.");
+            $("#winner-popup").css("display","none");
+        });
     }
 
     /**

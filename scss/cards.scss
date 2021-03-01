@@ -20,6 +20,7 @@ body {
   background: #222f3e;
   color: white;
 }
+
 .text--aucun-score {
   font-style: italic;
 }
@@ -75,10 +76,15 @@ $card-names: (
   }
 
 }
-
+/*
+  Mise en forme du sablier
+*/
 // 4 cartes de haut donc le barre de progression fait 4 fois cette hauteur
 $countdown-height : $card-height * 4;
-
+// le sablier est suffisant, je ne l'affiche pas
+#countDown {
+  display: none;
+}
 .progressBar {
   &--back {
     height: $countdown-height;
@@ -91,12 +97,10 @@ $countdown-height : $card-height * 4;
   }
   &--color {
     height: $countdown-height;
-    //background-color: #ee5253;
     background: rgb(238,82,83);
     background: linear-gradient(0deg, rgba(238,82,83,1) 0%, rgba(255,159,67,1) 40%, rgba(236,160,72,1) 60%, rgba(16,172,132,1) 100%);
   }
 }
-
 
 /*
 Mise en formes des sections
@@ -117,24 +121,47 @@ Mise en formes des sections
   padding: 5px;
 }
 
-// le sablier suffisant, je ne l'affiche pas
-#countDown {
+/*
+Popup gagnant
+*/
+#winner-popup {
   display: none;
+  flex-direction: column;
+  align-content: space-around;
+  height: 130px;
+  width: 250px;
+  border: #10ac84 solid 3px;
+  background-color: #1dd1a1;
+  position: absolute;
+  top: 180px;
+  left: 40%;
+  &--title {
+    background-color: #10ac84;
+    padding: 6px;
+    font-size: 1.4em;
+  }  
+  p {
+    padding-left: 10px;
+  }
+  &--form {
+    padding-left: 10px;
+  }
 }
 
 /*
 Surprise :D
 */
 .konami {
-  background-color: yellow;
+  font-family: 'Comic Sans MS';
+  //background-color: yellow;
+  background-image: url('https://media.tenor.com/images/ed8c3288a67e36cff1cf15f6600ab1f6/tenor.gif');
+  .informations {
+    background-color: rebeccapurple;
+  }
+  .sablier {
+    background-color: chartreuse;
+  }
+  .boardGame {
+    background-color: hotpink;
+  }
 }
-.konami .informations {
-  background-color: rebeccapurple;
-}
-.konami .sablier {
-  background-color: chartreuse;
-}
-.konami .boardGame {
-  background-color: hotpink;
-}
-

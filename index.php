@@ -51,11 +51,7 @@ Board::printDifficulty($_POST["difficulty"]);
 Board::printHighScore($Difficulty);
 echo '</aside>';
 
-echo '<div id="winner-popup">';
-echo '<p>Vous avez gagnez en <span id="winner-time"></span></p>';
-echo '<input type="text" name="playerName" placeholder="Votre nick en 3 lettres" maxlength="3">';
-echo '<input type="submit" value="Valider">';
-echo '</div>';
+Board::printWinnerPopup();
 
 echo '</body>
 </html>';
