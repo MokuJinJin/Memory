@@ -111,8 +111,13 @@ function MemoryGame(jqObj) {
             data: { 'high_score': JSON.stringify(highScore)},
             dataType: 'json'
         })// Code qui se lance en cas de succès
-        .done(function () {
-            // CODE SUCCESS
+        .done(function (dataBestHighScore) {
+            $.each(dataBestHighScore, function (index, obj) {
+                // on écrit les scores renvoyés
+                $("#high-score--"+index).text(obj.PlayerName+" en "+transformeTempsEnTexte(obj.ElapsedTime));
+                // Utilisation de la fonction custom JQuery
+                $("#high-score").blink(3);
+            });
         })// Code qui se déclanche si un problème est survenue
         .fail(function (dataError) {
             console.log(dataError);

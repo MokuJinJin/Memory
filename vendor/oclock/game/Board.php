@@ -75,7 +75,7 @@ class Board {
 
         echo '<ol>';
         foreach ($bestHighScore as $key => $highScore) {
-            echo '<li>';
+            echo '<li id="high-score--'.$key.'">';
             echo '<span>'.$highScore->PlayerName.'</span>';
             echo ' en <span>'.Utilitaire::transformeTempsEnTexte($highScore->ElapsedTime).'</span>';
             echo "</li>";
