@@ -66,30 +66,61 @@ function MemoryGame(jqObj) {
     }
 
     /**
+     * @description calcul du temps passé en fin de jeu
+     * @return {int} 
+     */
+    this.getElapsedTime = function(){
+        return this.countdown.secondsToResolve * 1000 - this.countdown.tempsRestant;
+    }
+
+    /**
      * @description Méthode pour décider de la fin du jeu
      */
     this.checkWinGame = function () {
         if (this.isGameWin()) {
+            // on arrête le sablier
             this.countdown.stopCountDown();
-            var elapsedTime = this.countdown.secondsToResolve * 1000 - this.countdown.tempsRestant;
-            // TODO : demander le nom du joueur
-            alert("Vous avez gagné en " + this.countdown.transformeTempsEnTexte(elapsedTime));
             
-            var highScore = new HighScore("Anonymous", (this.difficulty.NumberOfMaxPair * 2), elapsedTime)
-            $.ajax({
-                url: "vendor/oclock/game/ajax/newHighScore.php",
-                type: 'POST',
-                data: { 'high_score': JSON.stringify(highScore)},
-                dataType: 'json'
-            }).done(function () {
-                //alert("success");
-            })
-            .fail(function (dataError) {
-                console.log(dataError);
-                //alert("error : " + dataError);
-                alert("l'enregistrement de la partie n'a pas pu être effectué, désolé.");
-            });
+            // on met à jour le message du popup avec le temps
+            $("#winner-popup--time").text(this.countdown.transformeTempsEnTexte(this.getElapsedTime()));
+            
+            // on affecte la function au click sur le boutton
+            $("#winner-popup--btnValider").off("click").click(this.winnerSaveHighScore.bind(this));
+            
+            // on affiche le popup
+            $("#winner-popup").css("display","flex");
         }
+    }
+    
+    /**
+     * @description Méthode pour enregistrer le high score
+     */
+    this.winnerSaveHighScore = function(){
+        var playerName = $("#winner-popup--playerName").val();
+        
+        // parce que il y a toujours moyen de saisir plus de lettres que prévu
+        if (playerName.length > 3) {playerName = playerName.substring(0, 3);}
+        
+        // On crée un objet qui 'ressemble' en tout point à l'objet PHP pour pouvoir le transmettre
+        var highScore = new HighScore(playerName, (this.difficulty.NumberOfMaxPair * 2), this.getElapsedTime())
+
+        // Vive le web 2.0 :p
+        $.ajax({
+            url: "vendor/oclock/game/ajax/newHighScore.php",
+            type: 'POST',
+            data: { 'high_score': JSON.stringify(highScore)},
+            dataType: 'json'
+        })// Code qui se lance en cas de succès
+        .done(function () {
+            // CODE SUCCESS
+        })// Code qui se déclanche si un problème est survenue
+        .fail(function (dataError) {
+            console.log(dataError);
+            alert("l'enregistrement de la partie n'a pas pu être effectué, désolé.");
+        }) // code qui s'effectura à chaque fois, quelque soit le type de résultat
+        .always(function() {
+            $("#winner-popup").css("display","none");
+        });
     }
 
     /**
@@ -119,7 +150,6 @@ function MemoryGame(jqObj) {
 
             // si les cartes visibles sont identique
             if (this.flippedCards.isCardsAreSameFruit()) {
-                //console.log('match fruits : '+clickedCard.fruitName);
                 $.each(this.flippedCards.listOfCards, function (index, fruitCard) {
                     // on marque les cartes comme étant validé et visible
                     fruitCard.markFlipped();
@@ -129,7 +159,6 @@ function MemoryGame(jqObj) {
                 this.augmentPairFound();
                 this.checkWinGame();
             } else {
-                //console.log('missmatch fruits');
                 // les cartes sont différentes
                 setTimeout(
                     // Utilisation de bind() pour pouvoir passer 'this' en arguments dans la function 'handler' invoqué par setTimeout()
@@ -137,7 +166,6 @@ function MemoryGame(jqObj) {
                     // temps d'attente pour que l'on puisse voir les cartes que l'on a retournés
                     tempsAttenteApresDeuxCarteDifferentes);
             }
-            //console.log(this.numberOfPairFound + '/' + this.difficulty.NumberOfMaxPair);
         }
     }
 }

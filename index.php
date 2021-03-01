@@ -11,8 +11,8 @@ if(array_key_exists("difficulty", $_POST))
 }
 else 
 {
-    $Difficulty = EnumDifficulty::Debug;
-    $_POST["difficulty"] = "Debug";
+    $Difficulty = EnumDifficulty::Normal;
+    $_POST["difficulty"] = "Normal";
 }
 
 $game = new Memory($Difficulty);
@@ -29,21 +29,29 @@ echo '<!DOCTYPE html>
 <script src="js/cardPair.js"></script>
 <script src="js/difficulty.js"></script>
 <script src="js/countdown.js"></script>
+<script src="js/surprise.js"></script>
 <script src="js/memoryGame.js"></script>
 <script src="js/index.main.js"></script>
 </head>
 <body>';
 
-Board::printDifficulty($_POST["difficulty"]);
-
+echo '<section class="boardGame">';
 Board::printBoard($game);
+echo '</section>';
 
+echo '<section class="sablier">';
 echo '<span id="countDown">affichage du temps restant ...</span>';
 echo '<div id="progressBar" class="progressBar--back">
         <div class="progressBar--color"></div>
     </div>';
+echo '</section>';
 
+echo '<aside class="informations">';
+Board::printDifficulty($_POST["difficulty"]);
 Board::printHighScore($Difficulty);
+echo '</aside>';
+
+Board::printWinnerPopup();
 
 echo '</body>
 </html>';
