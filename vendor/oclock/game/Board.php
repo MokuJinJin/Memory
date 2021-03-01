@@ -69,8 +69,9 @@ class Board {
         echo '<div id="high-score">';
         echo '<p>Les meilleurs scores :</p>';
 
+        
         if (count($bestHighScore) == 0) {
-            echo "<span class=\"text--aucun-score\">Aucun score pour l'instant :'(</span>";
+            echo "<span id=\"high-score--none\" class=\"text--aucun-score\">Aucun score pour l'instant :'(</span>";
         }
 
         echo '<ol>';

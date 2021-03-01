@@ -113,6 +113,13 @@ function MemoryGame(jqObj) {
         })// Code qui se lance en cas de succès
         .done(function (dataBestHighScore) {
             $.each(dataBestHighScore, function (index, obj) {
+                // si il y a aucun score auparavant, on cache le texte
+                $("#high-score--none").css("display", "none");
+
+                if ($("#high-score--"+index).length == 0) {
+                    // on ajoute un element
+                    $("#high-score ol").append('<li id="high-score--'+index+'"></li>');
+                }
                 // on écrit les scores renvoyés
                 $("#high-score--"+index).text(obj.PlayerName+" en "+transformeTempsEnTexte(obj.ElapsedTime));
                 // Utilisation de la fonction custom JQuery
