@@ -25,7 +25,7 @@ class DAL extends Base_DAL {
 	 * @param $nombre int nombre de résultat
      * @return HighScore[]
      */
-    public static function GetBestHighScoreForDifficulty($difficulty, $nombre)
+    public static function GetBestHighScoreForDifficulty($difficulty, $nombre = 3)
     {
         $req = "select id,PlayerName,Difficulty,ElapsedTime from `high_score` where Difficulty = ".$difficulty." order by ElapsedTime asc limit ".$nombre.";";
         $allHighScore = self::GetAllSomething($req,EnumBddClass::HighScore);

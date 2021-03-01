@@ -11,7 +11,8 @@ if (array_key_exists("high_score",$_POST)) {
     try {
         DAL::AddHighScore($nouveauHighScore);
         // Si on ne renvoit rien, la requete ajax considera que c'est une erreur.
-        echo json_encode('ok');
+        $newHighScore = DAL::GetBestHighScoreForDifficulty($nouveauHighScore->Difficulty);
+        echo json_encode($newHighScore);
     } catch (Exception $th) {
         http_response_code(500);
         echo json_encode($th);
