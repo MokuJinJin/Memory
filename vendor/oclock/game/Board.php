@@ -73,14 +73,14 @@ class Board {
             echo "<span class=\"text--aucun-score\">Aucun score pour l'instant :'(</span>";
         }
 
-        echo '<ul>';
+        echo '<ol>';
         foreach ($bestHighScore as $key => $highScore) {
             echo '<li>';
             echo '<span>'.$highScore->PlayerName.'</span>';
             echo ' en <span>'.Utilitaire::transformeTempsEnTexte($highScore->ElapsedTime).'</span>';
             echo "</li>";
         }
-        echo '</ul>';
+        echo '</ol>';
         echo '</div>';
     }
     
