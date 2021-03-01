@@ -29,6 +29,8 @@ Le but de cet exercice étant de préparer un cours, voici les notions abordées
 - Utilisation de setTimeOut dans une classe : memoryGame.js
 - Utilisation de Jquery, des autres classes : memoryGame.js
 - Utilisation d'ajax avec jquery : memoryGame.js
+- Modification du DOM en retour ajax : memoryGame.js
+- Création d'une fonction blink dans JQuery : jquery.blink.js
 
 ### SCSS : 
 
